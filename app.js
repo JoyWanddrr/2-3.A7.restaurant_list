@@ -74,7 +74,24 @@ app.get("/search", (req, res) => {
 })
 
 // edit
+app.get('/restaurants/:id/edit', (req, res) => {
+  const id = req.params.id
+  Restaurant.findById(id)
+    .lean()
+    .then(restaurant => res.render('edit', { restaurant }))
+    .catch(error => console.log(error))
+})
 
+// 設定edit的post路由。
+app.post('/restaurants/:id/edit', (req, res) => {
+  const id = req.params.id
+  // 1.查詢資料
+  // findByIdAndUpdate(id, update, options, callback)，可直接查找ID並修改整組資料上傳
+  return Restaurant.findByIdAndUpdate(id, req.body)
+    // 這裡需要Mongoose的function，所以不用Lean()移除格式。成功後重新導向detail頁面
+    .then((restaurant) => res.redirect(`/restaurants/${id}`))
+    .catch(err => console.log(err))
+})
 
 
 // delete
