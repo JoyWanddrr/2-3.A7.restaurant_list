@@ -3,20 +3,12 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const resSchema = new Schema({
+const restSchema = new Schema({
   name: {
     type: String, // 資料型別是字串
     required: true // 這是個必填欄位
   },
   name_en: {
-    type: String,
-    required: true
-  },
-  category: {
-    type: String,
-    required: true
-  },
-  category: {
     type: String,
     required: true
   },
@@ -32,8 +24,9 @@ const resSchema = new Schema({
     type: String,
     required: true
   },
+  // 用number會出現錯誤
   phone: {
-    type: Number,
+    type: String,
     required: true
   },
   google_map: {
@@ -49,4 +42,4 @@ const resSchema = new Schema({
     required: true
   }
 })
-module.exports = mongoose.model('restaurant', resSchema)
+module.exports = mongoose.model('restaurant', restSchema)
