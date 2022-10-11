@@ -52,6 +52,33 @@ app.get('/restaurants/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
+// 搜尋特定餐廳
+app.get("/search", (req, res) => {
+  // 擷取input
+  const keywords = req.query.keyword.trim()
+  // 如果查詢不到則返回首頁
+  if (!keywords) {
+    res.redirect("/")
+  }
+  Restaurant.find({})
+    .lean()
+    .then(restaurants => {
+      const filterRestaurant = restaurants.filter(
+        (data) =>
+          data.name.toLowerCase().includes(keywords) ||
+          data.category.includes(keywords)
+      )
+      res.render('index', { restaurants: filterRestaurant, keywords })
+    })
+    .catch(err => console.log(err))
+})
+
+// edit
+
+
+
+// delete
+
 app.listen(3000, () => {
   console.log('express now is listening on prot 3000.')
 })
