@@ -28,19 +28,28 @@ app.set('view engine', 'hbs')
 // 設定 Express 路由以提供靜態檔案
 app.use(express.static('public'))
 
-// use:每筆request，通過body parser解析
-// urlencoded:使用bodyParser解析url
+// use:每筆request，通過body parser解析。urlencoded:使用bodyParser解析url。
 app.use(bodyParser.urlencoded({ extended: true }))
 
 
 app.get('/', (req, res) => {
   // 使用find，在未寫入條件之下，會取出全部的資料
   Restaurant.find()
-    // 把mongoose的model轉成JS
     .lean()
-    .then(restaurant => res.render('index', { restaurant }))
+    .then(restaurants => res.render('index', { restaurants }))
     // 抓取錯誤資訊
     .catch(error => console.error(error))
+})
+
+// detail/show，注意，因為是由資料庫匯入，所以都要用Restaurant
+app.get('/restaurants/:id', (req, res) => {
+  const id = req.params.id
+  return Restaurant.findById(id)
+    // 撇除Mongoose的處理，才能render
+    .lean()
+    // 將拿到的資料放入show.hbs渲染
+    .then(restaurant => res.render('show', { restaurant }))
+    .catch(error => console.log(error))
 })
 
 app.listen(3000, () => {
