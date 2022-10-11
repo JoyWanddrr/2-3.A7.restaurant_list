@@ -94,7 +94,14 @@ app.post('/restaurants/:id/edit', (req, res) => {
 })
 
 
-// delete
+// delete只需設定POST，在index就有設定
+app.post('/restaurants/:id/delete', (req, res) => {
+  const id = req.params.id
+  return Restaurant.findById(id)
+    .then(restaurant => restaurant.remove())
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
 
 app.listen(3000, () => {
   console.log('express now is listening on prot 3000.')
