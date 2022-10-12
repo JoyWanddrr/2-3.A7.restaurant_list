@@ -2,12 +2,11 @@ const express = require('express')
 const app = express()
 // 連接資料庫，先npm mongoose，在robo 3T設定資料庫，在終端機裡設定連線
 const mongoose = require('mongoose')
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 const exphbs = require('express-handlebars')
 // 載入Schema
 const Restaurant = require('./models/restaurant')
-const bodyParser = require('body-parser')
 
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 // 取得資料庫連線
 const db = mongoose.connection
 
@@ -27,9 +26,7 @@ app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
 // 設定 Express 路由以提供靜態檔案
 app.use(express.static('public'))
-
-// use:每筆request，通過body parser解析。urlencoded:使用bodyParser解析url。
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true }))
 
 
 app.get('/', (req, res) => {
@@ -73,6 +70,11 @@ app.get("/search", (req, res) => {
     .catch(err => console.log(err))
 })
 
+app.get('/restaurants/new', (req, res) => {
+  res.send('aaa')
+})
+
+
 // edit
 app.get('/restaurants/:id/edit', (req, res) => {
   const id = req.params.id
@@ -102,6 +104,19 @@ app.post('/restaurants/:id/delete', (req, res) => {
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
+
+// ------------------------------------------------------------
+// 新增餐廳
+app.get('/restaurants/new', (req, res) => {
+  res.render('new')
+})
+
+app.post('/restaurants', (req, res) => {
+  Restaurant.create(req.body)
+    .then(() => res.redirect('/'))
+    .catch(err => console.log(err))
+})
+// --------------------------------------------------------------
 
 app.listen(3000, () => {
   console.log('express now is listening on prot 3000.')
