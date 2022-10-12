@@ -1,29 +1,38 @@
-{{!--設定edit的method為POST。要新增路由接住資料 --}}
-<form action="/restaurants/{{restaurant._id}}/edit" method="POST">
+{{!-- 使用者新增資料的畫面(樣板) --}}
+
+{{!-- action:表單送出要送去哪。method="POST":是「用 POST 方法，把資料送給 /restaurants 位置」。這代表等下我們需要再新增一條 POST /restaurants 路由來接住這筆表單資料。
+--}}
+<form action="/restaurants" method="POST">
+  {{!-- <input> 標籤的 name 屬性，這個 name 屬性很重要，它是 HTTP 傳輸時的資料名稱。這些資料會被放在 HTTP 的 request body 裡，進到 Express.js 以後打包成
+  req.body物件，就能在後續流程中使用： --}}
+  {{!--設定edit的method為POST。要新增路由接住資料 --}}
   <h4 class="mb-1 restaurant-show-title" style="color: black;background-color:white; font-size:25px;">
-    正在修改:<span style="color:blue">{{restaurant.name}}</span>的資訊
+    新增餐廳
   </h4>
 
-  <div class="row mb-3 g-2">
+
+
+  {{!-- 以下尚未完成 --}}
+  {{!-- <div class="row mb-3 g-2">
     <label for="name" class="col-md-4 col-form-label">
       餐廳名稱
     </label>
     <div class="col-md-8">
-      <input type="text" name="name" class="form-control" value="{{restaurant.name}}" required>
+      <input type="text" name="name" class="form-control" value="" required>
     </div>
 
     <label for="name_en" class="col-md-4 col-form-label">
       餐廳英文名稱
     </label>
     <div class="col-md-8">
-      <input type="text" name="name_en" class="form-control" value="{{restaurant.name_en}}" required>
+      <input type="text" name="name_en" class="form-control" value="" required>
     </div>
 
     <label for="category" class="col-md-4 col-form-label">
       類別
     </label>
     <div class="col-md-8">
-      <input list="titles" type="text" name="category" class="form-control" value="{{restaurant.category}}" required>
+      <input list="titles" type="text" name="category" class="form-control" value="" required>
       <datalist id="titles">
         <option>中東料理</option>
         <option>美式</option>
@@ -38,21 +47,21 @@
       圖片
     </label>
     <div class="col-md-8">
-      <input type="url" name="image" class="form-control" value="{{restaurant.image}}" required>
+      <input type="url" name="image" class="form-control" value="" required>
     </div>
 
     <label for="location" class="col-md-4 col-form-label">
       地址
     </label>
     <div class="col-md-8">
-      <input type="text" name="location" class="form-control" value="{{restaurant.location}}" required>
+      <input type="text" name="location" class="form-control" value="" required>
     </div>
 
     <label for="google_map" class="col-md-4 col-form-label">
       Google Map
     </label>
     <div class="col-md-8">
-      <input type="url" name="google_map" class="form-control" value="{{restaurant.google_map}}">
+      <input type="url" name="google_map" class="form-control" value="">
       </a>
     </div>
 
@@ -60,16 +69,15 @@
       電話
     </label>
     <div class="col-md-8">
-      <input type="text" name="phone" class="form-control" oninput="if(value.length>10)value=value.slice(0,10)"
-        value="{{restaurant.phone}}" required>
+      <input type="text" name="phone" class="form-control" oninput="if(value.length>10)value=value.slice(0,10)" value=""
+        required>
     </div>
 
     <label for="rating" class="col-md-4 col-form-label">
       評分
     </label>
     <div class="col-md-8">
-      <input type="number" name="rating" class="form-control" min='0' max="5" step="0.1" value="{{restaurant.rating}}"
-        required>
+      <input type="number" name="rating" class="form-control" min='0' max="5" step="0.1" value="" required>
     </div>
 
 
@@ -77,12 +85,13 @@
       敘述
     </label>
     <div class="col-md-8">
-      <textarea id="description" name="description" rows="3" cols="70" required>{{restaurant.description}}</textarea>
+      <textarea id="description" name="description" rows="3" cols="70" required></textarea>
     </div>
 
   </div>
   <div class=" d-flex justify-content-end mr-4">
     <button type="submit" class=" p-2 btn btn-primary m-1">save</button>
     <a href="/" class="p-2 btn btn-primary m-1">back</a>
-  </div>
+  </div> --}}
+
 </form>

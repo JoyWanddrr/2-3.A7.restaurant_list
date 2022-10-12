@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 問題
 
 Q1描述:
@@ -55,3 +56,6 @@ Q3.每次重跑專案的時候，資料庫不會重新載入json檔案嗎?等於
 * Express-Handlebars 3.0.0
 * Bootstrap 4.1.3
 * Font-awesome 6.2.0
+=======
+# 2-3.A7.restaurant_list
+>>>>>>> e1a5126 (update new page file)
