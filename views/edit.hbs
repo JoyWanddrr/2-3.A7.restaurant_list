@@ -4,26 +4,27 @@
     正在修改:<span style="color:blue">{{restaurant.name}}</span>的資訊
   </h4>
 
-  <div class="row mb-3 g-2">
+  <div class="row m-auto g-2">
     <label for="name" class="col-md-4 col-form-label">
       餐廳名稱
     </label>
     <div class="col-md-8">
-      <input type="text" name="name" class="form-control" value="{{restaurant.name}}" required>
+      <input type="text" name="name" class="form-control mb-2" value="{{restaurant.name}}" required>
     </div>
 
     <label for="name_en" class="col-md-4 col-form-label">
       餐廳英文名稱
     </label>
     <div class="col-md-8">
-      <input type="text" name="name_en" class="form-control" value="{{restaurant.name_en}}" required>
+      <input type="text" name="name_en" class="form-control mb-2" value="{{restaurant.name_en}}" required>
     </div>
 
     <label for="category" class="col-md-4 col-form-label">
       類別
     </label>
     <div class="col-md-8">
-      <input list="titles" type="text" name="category" class="form-control" value="{{restaurant.category}}" required>
+      <input list="titles" type="text" name="category" class="form-control mb-2" value="{{restaurant.category}}"
+        required>
       <datalist id="titles">
         <option>中東料理</option>
         <option>美式</option>
@@ -38,21 +39,21 @@
       圖片
     </label>
     <div class="col-md-8">
-      <input type="url" name="image" class="form-control" value="{{restaurant.image}}" required>
+      <input type="url" name="image" class="form-control mb-2" value="{{restaurant.image}}" required>
     </div>
 
     <label for="location" class="col-md-4 col-form-label">
       地址
     </label>
     <div class="col-md-8">
-      <input type="text" name="location" class="form-control" value="{{restaurant.location}}" required>
+      <input type="text" name="location" class="form-control mb-2" value="{{restaurant.location}}" required>
     </div>
 
     <label for="google_map" class="col-md-4 col-form-label">
       Google Map
     </label>
     <div class="col-md-8">
-      <input type="url" name="google_map" class="form-control" value="{{restaurant.google_map}}">
+      <input type="url" name="google_map" class="form-control mb-2" value="{{restaurant.google_map}}">
       </a>
     </div>
 
@@ -60,7 +61,7 @@
       電話
     </label>
     <div class="col-md-8">
-      <input type="text" name="phone" class="form-control" oninput="if(value.length>10)value=value.slice(0,10)"
+      <input type="text" name="phone" class="form-control mb-2" oninput="if(value.length>10)value=value.slice(0,10)"
         value="{{restaurant.phone}}" required>
     </div>
 
@@ -68,8 +69,8 @@
       評分
     </label>
     <div class="col-md-8">
-      <input type="number" name="rating" class="form-control" min='0' max="5" step="0.1" value="{{restaurant.rating}}"
-        required>
+      <input type="number" name="rating" class="form-control mb-2" min='0' max="5" step="0.1"
+        value="{{restaurant.rating}}" required>
     </div>
 
 

@@ -6,7 +6,8 @@ const exphbs = require('express-handlebars')
 // 載入Schema
 const Restaurant = require('./models/restaurant')
 
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect("mongodb+srv://Alpha:camp@cluster0.j297u5e.mongodb.net/restaurant_list?retryWrites=true&w=majority")
+// mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 // 取得資料庫連線
 const db = mongoose.connection
 
@@ -37,6 +38,20 @@ app.get('/', (req, res) => {
     // 抓取錯誤資訊
     .catch(error => console.error(error))
 })
+
+// ------------------------------------------------------------
+// 新增餐廳
+app.get('/restaurants/new', (req, res) => {
+  res.render('new')
+})
+
+app.post('/restaurants', (req, res) => {
+  Restaurant.create(req.body)
+    .then(() => res.redirect('/'))
+    .catch(err => console.log(err))
+})
+// --------------------------------------------------------------
+
 
 // detail/show，注意，因為是由資料庫匯入，所以都要用Restaurant
 app.get('/restaurants/:id', (req, res) => {
@@ -70,11 +85,6 @@ app.get("/search", (req, res) => {
     .catch(err => console.log(err))
 })
 
-app.get('/restaurants/new', (req, res) => {
-  res.send('aaa')
-})
-
-
 // edit
 app.get('/restaurants/:id/edit', (req, res) => {
   const id = req.params.id
@@ -105,18 +115,6 @@ app.post('/restaurants/:id/delete', (req, res) => {
     .catch(error => console.log(error))
 })
 
-// ------------------------------------------------------------
-// 新增餐廳
-app.get('/restaurants/new', (req, res) => {
-  res.render('new')
-})
-
-app.post('/restaurants', (req, res) => {
-  Restaurant.create(req.body)
-    .then(() => res.redirect('/'))
-    .catch(err => console.log(err))
-})
-// --------------------------------------------------------------
 
 app.listen(3000, () => {
   console.log('express now is listening on prot 3000.')
