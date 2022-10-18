@@ -6,8 +6,7 @@ const exphbs = require('express-handlebars')
 // 載入Schema
 const Restaurant = require('./models/restaurant')
 
-mongoose.connect("mongodb+srv://Alpha:camp@cluster0.j297u5e.mongodb.net/restaurant_list?retryWrites=true&w=majority")
-// mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 // 取得資料庫連線
 const db = mongoose.connection
 
@@ -65,12 +64,12 @@ app.get('/restaurants/:id', (req, res) => {
 })
 
 // 搜尋特定餐廳
-app.get("/search", (req, res) => {
+app.get('/search', (req, res) => {
   // 擷取input
   const keywords = req.query.keyword.trim()
   // 如果查詢不到則返回首頁
   if (!keywords) {
-    res.redirect("/")
+    res.redirect('/')
   }
   Restaurant.find({})
     .lean()
